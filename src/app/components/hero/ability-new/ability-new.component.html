@@ -1,0 +1,21 @@
+<div id="textbox" *ngIf="ability" (dblclick)="onToggle()">
+    <span class="alignleft">{{ prefix }}</span>
+    <ng-container *ngFor="let cost of ability.cost; let i = index">
+      <span *ngIf="i < value || i < ability.min" class="circle-filled">&#8203;</span>
+      <span *ngIf="(i < value || i < ability.min) === false" class="circle">{{ cost }}</span>
+    </ng-container>
+  </div>
+  <span *ngIf="showChangeValue">
+    <form class="add-form" (ngSubmit)="onSubmit()">
+      <span class="form-control">
+        <input
+          type="text"
+          name="value"
+          id="value"
+          [(ngModel)]="value"
+          placeholder="{{ value }}t"
+        />
+      </span>
+      <input type="submit" value="speichern" class="btn btn-block" />
+    </form>
+  </span>

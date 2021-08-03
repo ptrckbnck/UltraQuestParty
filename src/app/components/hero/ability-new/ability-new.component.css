@@ -1,0 +1,44 @@
+span.circle {
+    background: #e3e3e3;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #353434;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  span.circle-filled {
+    background: #000000;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #6e6e6e;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  #textbox {display:flex; flex-flow:row wrap; line-height: 300%;}
+
+  .alignleft {
+  width:33.33333%;
+  text-align:left;
+  }
+  .aligncenter {
+  width:33.33333%;
+  text-align:center;
+  }
+  .alignright {
+  width:33.33333%;
+  text-align:right;
+  }

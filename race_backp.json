@@ -1,0 +1,627 @@
+{"race": [
+    {
+      "id": 0,
+      "race": "human",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 1,
+      "race": "human",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 2,
+      "race": "human",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 3,
+      "race": "human",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 4,
+      "race": "dwarf",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 5,
+      "race": "dwarf",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "race": "dwarf",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 7,
+      "race": "dwarf",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 8,
+      "race": "elf",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 9,
+      "race": "elf",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 10,
+      "race": "elf",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 11,
+      "race": "elf",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 12,
+      "race": "halfling",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 13,
+      "race": "halfling",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 14,
+      "race": "halfling",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 15,
+      "race": "halfling",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 16,
+      "race": "halfduck",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 17,
+      "race": "halfduck",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 18,
+      "race": "halfduck",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 19,
+      "race": "halfduck",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 20,
+      "race": "imp",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 21,
+      "race": "imp",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 22,
+      "race": "imp",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 23,
+      "race": "imp",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 24,
+      "race": "pixie",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 25,
+      "race": "pixie",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 26,
+      "race": "pixie",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 27,
+      "race": "pixie",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 28,
+      "race": "centaur",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 29,
+      "race": "centaur",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 30,
+      "race": "centaur",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 31,
+      "race": "centaur",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 32,
+      "race": "aaruk",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 33,
+      "race": "aaruk",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 34,
+      "race": "aaruk",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 35,
+      "race": "aaruk",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 36,
+      "race": "halfelf",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 37,
+      "race": "halfelf",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 38,
+      "race": "halfelf",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 39,
+      "race": "halfelf",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 40,
+      "race": "ogre",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 41,
+      "race": "ogre",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 42,
+      "race": "ogre",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 43,
+      "race": "ogre",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 44,
+      "race": "Mensch",
+      "ability": "mov",
+      "min": 3,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 45,
+      "race": "Mensch",
+      "ability": "str",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 46,
+      "race": "Mensch",
+      "ability": "dex",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    },
+    {
+      "id": 47,
+      "race": "Mensch",
+      "ability": "int",
+      "min": 2,
+      "max": 4,
+      "cost": [
+        0,
+        0,
+        2,
+        5
+      ]
+    }
+  ]
+}

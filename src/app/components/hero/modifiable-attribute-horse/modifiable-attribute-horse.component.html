@@ -1,0 +1,23 @@
+<div>
+  <form class="add-form" (ngSubmit)="onSubmit()">
+    <p>
+      <span (dblclick)="onToggle()"
+        >{{ prefix }}
+        <fa-icon [icon]="faHorseHead"> </fa-icon>
+        : {{ value }}
+      </span>
+      <span *ngIf="showChangeValue">
+        <span class="form-control">
+          <input
+            type="text"
+            name="value"
+            id="value"
+            [(ngModel)]="value"
+            placeholder="{{ value }}t"
+          />
+        </span>
+        <input type="submit" value="speichern" class="btn btn-block" />
+      </span>
+    </p>
+  </form>
+</div>

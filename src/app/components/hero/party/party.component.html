@@ -1,0 +1,64 @@
+<div class="container">
+    <h2 >Gruppenbogen</h2>
+    <app-modifiable-attribute prefix="Spieler" value="{{party.player}}"(onChangeValue)="setPlayer($event)"></app-modifiable-attribute>
+    <div id=textboxsmall>
+      <span class=alignleft>Gruppe:</span> 
+      <span>{{party.name}} </span>
+    </div>
+    
+
+    <h4 (dblclick)="onToggleParty()">Abenteurer </h4>
+    <form class="add-form" (ngSubmit)="onSubmitNewHero()">
+      <span *ngIf="showNewHeroValue">Neuen Abenteurer anlegen
+        <span class="form-control">
+          <input
+            type="text"
+            name="raceValue"
+            id="raceValue"
+            [(ngModel)]="raceValue"
+            placeholder="Rasse"
+          />
+        </span>
+        <input type="submit" value="speichern" class="btn btn-block" />
+      </span>
+    </form>
+    
+
+
+
+
+    <div *ngFor="let hero of heroes; let i = index" id=textboxsmall>
+      <span class=alignleft>{{i+1}}:</span> 
+      <span> {{hero.race}} {{hero.name}} </span>
+    </div>
+
+    <h4>Questen</h4>
+    <app-modifiable-attribute prefix="1" value="{{party.quest1}}" (onChangeValue)="setQuest1($event)"></app-modifiable-attribute>
+    <app-modifiable-attribute prefix="2" value="{{party.quest2}}" (onChangeValue)="setQuest2($event)"></app-modifiable-attribute>
+    <app-modifiable-attribute prefix="3" value="{{party.quest3}}" (onChangeValue)="setQuest3($event)"></app-modifiable-attribute>
+    <h4>Kampfwerte</h4>
+    <div id=textboxsmall>
+      <span class=alignleft>NK:</span> 
+      <span>{{nk}} </span>
+    </div>
+    <div id=textboxsmall>
+      <span class=alignleft>FK:</span> 
+      <span>{{fk}} </span>
+    </div>
+    <div id=textboxsmall>
+      <span class=alignleft>NK+FK:</span> 
+      <span>{{nfk}} </span>
+    </div>
+    <h4>Sonstiges</h4>
+    <app-modifiable-attribute prefix="Ruhm!" value="{{party.fame}}" (onChangeValue)="setFame($event)"></app-modifiable-attribute>
+    <app-modifiable-attribute prefix="Ehre!" value="{{party.honor}}" (onChangeValue)="setHonor($event)"></app-modifiable-attribute>
+    <app-modifiable-attribute prefix="Standort" value="{{party.location}}" (onChangeValue)="setLocation($event)"></app-modifiable-attribute>
+</div>
+
+<app-hero-card
+  *ngFor="let hero of heroes"
+  [hero]="hero"
+  (onChangeHero)="setHero(hero)"
+>
+  ></app-hero-card
+>

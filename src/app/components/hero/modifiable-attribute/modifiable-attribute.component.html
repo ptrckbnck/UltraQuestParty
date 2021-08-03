@@ -1,0 +1,19 @@
+
+<div (dblclick)="onToggle()" id="textboxsmall">
+  <span class="alignleft">{{ prefix }}:</span>
+  <span> {{ value }}</span>
+</div>
+<form class="add-form" (ngSubmit)="onSubmit()">
+  <span *ngIf="showChangeValue">
+    <span class="form-control">
+      <input
+        type="text"
+        name="value"
+        id="value"
+        [(ngModel)]="value"
+        placeholder="{{ value }}"
+      />
+    </span>
+    <input type="submit" value="speichern" class="btn btn-block" />
+  </span>
+</form>

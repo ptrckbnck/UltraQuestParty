@@ -1,0 +1,36 @@
+<div class="container">
+<h2 id=race >{{hero.race}} {{hero.name}} </h2>
+<app-modifiable-attribute prefix="Name" value={{hero.name}} (onChangeValue)="setName($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="Beruf" value={{hero.profession}} (onChangeValue)="setProfession($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="NK" value={{hero.closeCombat}} (onChangeValue)="setCloseCombat($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="FK" value={{hero.rangeCombat}} (onChangeValue)="setRangeCombat($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="RW" value={{hero.armor}} (onChangeValue)="setArmor($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="Rüstung" value={{hero.armorItem}} (onChangeValue)="setArmorItem($event)"></app-modifiable-attribute>
+
+<p>heimisch: TODO</p>
+
+<div id="textboxsmall" *ngIf="hero.profession ==='Kleriker'">
+    <span class="alignleft">0:</span>
+    <span>Tränke brauen</span>
+</div>
+
+
+
+<app-modifiable-attribute prefix="1" value={{hero.skill1}} (onChangeValue)="setSkill1($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="2" value={{hero.skill2}} (onChangeValue)="setSkill2($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="3" value={{hero.skill3}} (onChangeValue)="setSkill3($event)"></app-modifiable-attribute>
+<app-modifiable-attribute prefix="4" value={{hero.skill4}} (onChangeValue)="setSkill4($event)"></app-modifiable-attribute>
+
+
+<app-ability-new prefix="Bewegung: "[ability]="mov" [value]="hero.movement" (onChangeValue)="setMov($event)"> </app-ability-new>
+<app-ability-new prefix="Stärke: "[ability]="str" [value]="hero.strength" (onChangeValue)="setStr($event)"> </app-ability-new>
+<app-ability-new prefix="Geschick: "[ability]="dex" [value]="hero.dexterity" (onChangeValue)="setDex($event)"> </app-ability-new>
+<app-ability-new prefix="Intelligenz: "[ability]="int" [value]="hero.intelligence" (onChangeValue)="setInt($event)"> </app-ability-new>
+<h4>Ausrüstung</h4>
+<ng-container *ngFor="let e of hero.equipment; let i = index">
+    <app-modifiable-attribute *ngIf="!isHorse(i+1)" prefix={{prefixOf(i)}} value={{e}} (onChangeValue)="setEquipment($event,i)"></app-modifiable-attribute>
+    
+    <app-modifiable-attribute *ngIf="isHorse(i+1)" prefix={{prefixOf(i)}} value={{hero.horse}} (onChangeValue)="setHorse($event)"></app-modifiable-attribute>
+    <app-modifiable-attribute *ngIf="isHorse(i+1)" prefix="Satteltasche" value={{e}} (onChangeValue)="setEquipment($event,i)"></app-modifiable-attribute>
+</ng-container>
+</div>
