@@ -1,0 +1,34 @@
+
+<div (click)="onTooltip()" (dblclick)="onToggle()" id="textboxsmall">
+    <span class="alignleft">
+      {{ prefix }}<ng-content></ng-content>:</span>
+    <span> {{ value }}</span>
+  </div>
+  <form class="add-form" (ngSubmit)="onSubmit()">
+    <span *ngIf="showChangeValue">
+      <span class="form-control">
+        <input
+          type="text"
+          name="value"
+          id="value"
+          [(ngModel)]="value"
+          placeholder="{{ value }}"
+        />
+      </span>
+      Info:
+      <span class="form-control">
+        <input
+          type="text"
+          name="valueTooltip"
+          id="valueTooltip"
+          [(ngModel)]="valueTooltip"
+          placeholder="{{valueTooltip}}"
+        />
+      </span>
+      <input type="submit" value="speichern" class="btn btn-block" />
+    </span>
+  </form>
+  <div *ngIf="showTooltip" class="tooltip">
+      {{valueTooltip}}
+  </div>
+  

@@ -43,23 +43,36 @@ export class HeroService {
 
   newEmptyHero(): Hero {
     return {
-      race: "",
-      name: "",
-      profession: "",
+      race: "/",
+      name: "NAME",
+      profession: "/",
+      professionInfo: "/",
       closeCombat: -1,
       rangeCombat: -1,
       armor: 0,
-      skill1 : "",
-      skill2 : "",
-      skill3 : "",
-      skill4 : "",
+      skill1 : "/",
+      skill1Info : "/",
+      skill2 : "/",
+      skill2Info: "/",
+      skill3 : "/",
+      skill3Info: "/",
+      skill4 : "/",
+      skill4Info: "/",
+      native5: "/",
+      native6: "/",
       movement : 0,
       strength : 0,
       dexterity : 0,
       intelligence : 0,
       equipment : [],
-      armorItem : "",
-      horse: ""
+      equipmentInfo : [],
+      armorItem : "/",
+      armorItemInfo : "/",
+      horse: "/",
+      horseInfo: "/",
+      injured : false,
+      cursed: false,
+      stones: 3
   }
     
   }

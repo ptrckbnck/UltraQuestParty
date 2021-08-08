@@ -3,6 +3,7 @@ export interface Party{
     player: String;
     name: String;
     heroes: number[];
+    heroesDead : number[];
     quest1: String;
     quest2: String;
     quest3: String;

@@ -7,6 +7,7 @@ import { Race } from 'src/app/Race';
 import { HeroService } from 'src/app/services/hero.service';
 import { PartyService } from 'src/app/services/party.service';
 import { RaceService } from 'src/app/services/race.service';
+import { faSkull } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-party',
@@ -18,6 +19,7 @@ export class PartyComponent implements OnInit {
     player: '',
     name: '',
     heroes: [],
+    heroesDead: [],
     quest1: '',
     quest2: '',
     quest3: '',
@@ -33,6 +35,7 @@ export class PartyComponent implements OnInit {
   nfk: number = 0;
   showNewHeroValue: boolean = false;
   raceValue: String = '';
+  faSkull = faSkull;
 
   constructor(
     private raceService: RaceService,
@@ -75,8 +78,7 @@ export class PartyComponent implements OnInit {
         this.heroes_subscription = this.heroService
           .getHeroes(h)
           .subscribe((heroes) => {
-            this.heroes = heroes;
-
+            this.heroes = heroes.sort((a,b )=>h.indexOf(a.id!)-h.indexOf(b.id!))
             this.nk = heroes.reduce(
               (sum, current) => sum + current.closeCombat,
               0
@@ -94,8 +96,33 @@ export class PartyComponent implements OnInit {
       });
   }
 
-  setHero(hero: Hero) {
-    this.heroService.updateHero(hero).subscribe(() => this.ngOnInit());
+  setHero(hero: Hero, i : number) {
+   //this.heroService.updateHero(hero).subscribe(() => this.ngOnInit());
+   this.heroService.updateHero(hero).subscribe();
+   console.log(hero);
+   console.log(this.heroes[i]);
+  }
+
+  isDead(hero: Hero){
+    if (!hero.id){return}
+    const set = new Set(this.party.heroesDead)
+    if (set.has(hero.id)){
+      return true;
+    }return false;
+  }
+
+  toggleDead(hero: Hero){
+    if (!hero.id){return}
+    const set = new Set(this.party.heroesDead)
+    if (set.has(hero.id)){
+      set.delete(hero.id)
+    } else {
+      set.add(hero.id);
+    }
+    this.party.heroesDead= Array.from(set);
+    this.partyService
+    .updateParty(this.party)
+    .subscribe(() => this.ngOnInit());
   }
 
   setPlayer(value: String): void {
@@ -172,6 +199,7 @@ export class PartyComponent implements OnInit {
         var race: Race = r[0];
         var hero: Hero = this.heroService.newEmptyHero();
         hero.race = race.race;
+        hero.equipment = race.equip.map(()=>"/")
         this.heroService.createHero(hero).subscribe((herowID) => {
           if (herowID.id) {
             this.party.heroes.push(herowID.id);
@@ -184,4 +212,20 @@ export class PartyComponent implements OnInit {
       this.raceValue = '';
     });
   }
+
+  up(pos : number){
+    console.log(pos)
+    if ( pos !== 0){
+      this.party.heroes = this.arraymoveup(this.party.heroes, pos)
+      this.heroes = this.arraymoveup(this.heroes, pos)
+      this.partyService
+      .updateParty(this.party)
+      .subscribe(() => this.ngOnInit()); 
+    }
+  }
+
+  arraymoveup(arr : any[], fromIndex: number) {
+    return arr.slice(0, fromIndex-1).concat(arr[fromIndex],arr[fromIndex-1],arr.slice(fromIndex+1))
+
+}
 }

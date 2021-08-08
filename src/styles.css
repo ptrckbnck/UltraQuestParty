@@ -6,9 +6,6 @@
   padding: 0;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-}
 
 .container {
   max-width: 500px;
@@ -87,9 +84,40 @@ body {
 }
 .aligncenter {
   width: 33.33333%;
-  text-align: center;
+  text-align: left;
 }
 .alignright {
   width: 33.33333%;
   text-align: right;
 }
+
+.tooltip {
+  background: #d3d1d1;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+
+div.normal {
+  font-weight: normal;
+}
+
+div.light {
+  font-weight: lighter;
+}
+
+div.thick {
+  font-weight: bold;
+}
+
+div.thicker {
+  font-weight: 900;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

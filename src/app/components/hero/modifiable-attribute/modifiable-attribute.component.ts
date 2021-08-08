@@ -1,4 +1,4 @@
-import { Component, Input,Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input,Output, OnInit, EventEmitter,ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-modifiable-attribute',
@@ -7,10 +7,10 @@ import { Component, Input,Output, OnInit, EventEmitter } from '@angular/core';
 })
 export class ModifiableAttributeComponent implements OnInit {
   @Output() onChangeValue: EventEmitter<String> = new EventEmitter();
-  horse!: boolean;
   @Input() prefix!: String;
   @Input() value!: String;
   showChangeValue: Boolean = false;
+  @ViewChild("top") top!: ElementRef;
 
   constructor() { }
   
@@ -26,6 +26,7 @@ export class ModifiableAttributeComponent implements OnInit {
   onSubmit() {
     this.showChangeValue = false;
     this.onChangeValue.emit(this.value);
+    this.top.nativeElement.focus();
     }
 
 }

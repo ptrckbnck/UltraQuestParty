@@ -1,20 +1,34 @@
 export interface Hero {
     id? : number;
     race: String;
+    raceInfo? : String;
     name: String;
     profession: String;
+    professionInfo: String; 
     closeCombat: number;
     rangeCombat: number;
     armor: number;
     skill1 : String;  
+    skill1Info : String;
     skill2 : String;
+    skill2Info : String;
     skill3 : String;
+    skill3Info : String;
     skill4 : String;
+    skill4Info : String;
+    native5 : String;
+    native6 : String;
     movement : number;
     strength : number;
     dexterity : number;
     intelligence : number;
     equipment : String[];
+    equipmentInfo : String[];
     armorItem : String;
+    armorItemInfo : String;
     horse: String;
+    horseInfo : String;
+    injured: boolean;
+    cursed: boolean;
+    stones: number;
 }

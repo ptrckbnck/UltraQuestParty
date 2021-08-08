@@ -18,14 +18,20 @@ import { ModifiableAttributeComponent } from './components/hero/modifiable-attri
 import { ModifiableAttributeHorseComponent } from './components/hero/modifiable-attribute-horse/modifiable-attribute-horse.component';
 import { PartyComponent } from './components/hero/party/party.component';
 import { AbilityNewComponent } from './components/hero/ability-new/ability-new.component';
-import { RaceComponent } from './components/race/race.component';
+import { ModifiableAttributeWTooltipComponent } from './components/hero/modifiable-attribute-w-tooltip/modifiable-attribute-w-tooltip.component';
+import { TestComponent } from './components/test/test.component';
+import { AttributeWTooltipComponent } from './components/hero/attribute-w-tooltip/attribute-w-tooltip.component';
+import { MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatRadioModule} from '@angular/material/radio';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path: 'party', component: PartyComponent},
   {path: 'party/:name', component: PartyComponent},
   {path: 'about', component: AboutComponent},
   {path: 'hero', component: HeroCardComponent},
-  {path: 'test', component: RaceComponent},
+  {path: 'test', component: TestComponent},
   
 ]
 
@@ -44,6 +50,9 @@ const appRoutes: Routes = [
     ModifiableAttributeHorseComponent,
     AbilityNewComponent,
     PartyComponent,
+    ModifiableAttributeWTooltipComponent,
+    TestComponent,
+    AttributeWTooltipComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +60,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    MatCardModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

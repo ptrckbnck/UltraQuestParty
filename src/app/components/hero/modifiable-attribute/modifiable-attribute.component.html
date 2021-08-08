@@ -1,7 +1,7 @@
 
-<div (dblclick)="onToggle()" id="textboxsmall">
+<div (dblclick)="onToggle()" id="textboxsmall" #top>
   <span class="alignleft">{{ prefix }}:</span>
-  <span> {{ value }}</span>
+  <span class="aligncenter"> {{ value }}</span>
 </div>
 <form class="add-form" (ngSubmit)="onSubmit()">
   <span *ngIf="showChangeValue">
@@ -14,6 +14,6 @@
         placeholder="{{ value }}"
       />
     </span>
-    <input type="submit" value="speichern" class="btn btn-block" />
+    <input type="submit" value="speichern" class="btn btn-block"/>
   </span>
 </form>

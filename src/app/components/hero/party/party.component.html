@@ -7,7 +7,7 @@
     </div>
     
 
-    <h4 (dblclick)="onToggleParty()">Abenteurer </h4>
+    <div class="thick" (dblclick)="onToggleParty()">Abenteurer</div>
     <form class="add-form" (ngSubmit)="onSubmitNewHero()">
       <span *ngIf="showNewHeroValue">Neuen Abenteurer anlegen
         <span class="form-control">
@@ -27,16 +27,17 @@
 
 
 
-    <div *ngFor="let hero of heroes; let i = index" id=textboxsmall>
+    <div *ngFor="let hero of heroes; let i = index" id=textboxsmall (click)="up(i)" (dblclick)="toggleDead(hero)">
       <span class=alignleft>{{i+1}}:</span> 
-      <span> {{hero.race}} {{hero.name}} </span>
+      <span class=aligncenter> {{hero.race}} {{hero.name}} </span>
+      <span class=alignright *ngIf="isDead(hero)"><fa-icon [icon]="faSkull"> </fa-icon></span> 
     </div>
 
-    <h4>Questen</h4>
+    <div class="thick">Questen</div> 
     <app-modifiable-attribute prefix="1" value="{{party.quest1}}" (onChangeValue)="setQuest1($event)"></app-modifiable-attribute>
     <app-modifiable-attribute prefix="2" value="{{party.quest2}}" (onChangeValue)="setQuest2($event)"></app-modifiable-attribute>
     <app-modifiable-attribute prefix="3" value="{{party.quest3}}" (onChangeValue)="setQuest3($event)"></app-modifiable-attribute>
-    <h4>Kampfwerte</h4>
+    <div class="thick">Kampfwerte</div> 
     <div id=textboxsmall>
       <span class=alignleft>NK:</span> 
       <span>{{nk}} </span>
@@ -49,16 +50,19 @@
       <span class=alignleft>NK+FK:</span> 
       <span>{{nfk}} </span>
     </div>
-    <h4>Sonstiges</h4>
+    <div class="thick">Sonstiges</div>
     <app-modifiable-attribute prefix="Ruhm!" value="{{party.fame}}" (onChangeValue)="setFame($event)"></app-modifiable-attribute>
     <app-modifiable-attribute prefix="Ehre!" value="{{party.honor}}" (onChangeValue)="setHonor($event)"></app-modifiable-attribute>
     <app-modifiable-attribute prefix="Standort" value="{{party.location}}" (onChangeValue)="setLocation($event)"></app-modifiable-attribute>
 </div>
 
+<ng-container *ngFor="let hero of heroes; let i = index">
 <app-hero-card
-  *ngFor="let hero of heroes"
-  [hero]="hero"
-  (onChangeHero)="setHero(hero)"
+  *ngIf="!isDead(hero)"
+  [hero]="this.heroes[i]"
+  (onChangeHero)="setHero($event, i)"
+  prefix = {{i+1}}
 >
   ></app-hero-card
 >
+</ng-container>
