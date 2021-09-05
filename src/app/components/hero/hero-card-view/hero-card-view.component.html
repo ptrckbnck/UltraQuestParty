@@ -1,0 +1,230 @@
+<div class="container" autofocus>
+    <div id="textboxsmall">
+      <span class="alignleft">{{ prefix }}</span>
+  
+      <span>
+        <h2 id="race">{{ hero.race }} {{ hero.name }}
+          <span *ngIf="hero && hero.injured"><fa-icon [icon]="faUserInjured"></fa-icon></span>
+          <span *ngIf="hero && hero.cursed"><fa-icon [icon]="faCrow"> </fa-icon></span>
+        </h2>
+      </span>
+  
+  
+    </div>
+    <app-attribute
+      prefix="Name"
+      [value]="hero.name"
+    ></app-attribute>
+    <app-attribute-w-tooltip
+    prefix="Rasse"
+    [value] ="hero.race"
+    [valueTooltip] ="race.raceInfo"
+    *ngIf="hero && hero.race && race && race.raceInfo"> 
+    </app-attribute-w-tooltip>
+  
+    <app-attribute-w-tooltip
+      prefix="Beruf"
+      [value]="hero.profession"
+      [valueTooltip]="hero.professionInfo"
+    ></app-attribute-w-tooltip>
+  
+    <app-attribute
+      prefix="NK"
+      value="{{hero.closeCombat}}"
+    ></app-attribute>
+    <app-attribute
+      prefix="FK"
+      value="{{hero.rangeCombat}}"
+    ></app-attribute>
+    <app-attribute
+      prefix="RW"
+      value="{{hero.armor}}"
+    ></app-attribute>
+    <app-attribute-w-tooltip
+      prefix="Rüstung"
+      [value]="hero.armorItem"
+      [valueTooltip]="hero.armorItemInfo"
+    ></app-attribute-w-tooltip>
+  
+    <div class="thick">Fertigkeiten</div>
+    <app-attribute-w-tooltip
+      *ngIf="hero.profession === 'Kleriker'"
+      prefix="0"
+      value="Tränke brauen"
+      valueTooltip="Erfolg bei W6 <= Geschick"
+    ></app-attribute-w-tooltip>
+    <app-attribute-w-tooltip
+      prefix="1"
+      [value]="hero.skill1"
+      [valueTooltip]="hero.skill1Info"
+    ></app-attribute-w-tooltip>
+    <app-attribute-w-tooltip
+      prefix="2"
+      [value] ="hero.skill2"
+      [valueTooltip] ="hero.skill2Info"
+    ></app-attribute-w-tooltip>
+    <app-attribute-w-tooltip
+      prefix ="3"
+      [value] ="hero.skill3"
+      [valueTooltip] ="hero.skill3Info"
+    ></app-attribute-w-tooltip>
+    <app-attribute-w-tooltip
+      prefix="4"
+      [value]="hero.skill4"
+      [valueTooltip]="hero.skill4Info"
+    ></app-attribute-w-tooltip>
+    <div class="thick">Heimisch</div>
+    <ng-container *ngIf="race">
+      <ng-container *ngFor="let e of race.native; let i = index">
+        <div id="textboxsmall">
+          <span class="alignleft">Rasse:</span>
+          <span> {{ e }} </span>
+        </div>
+      </ng-container>
+    </ng-container>
+    <app-attribute
+      prefix="5"
+      [value]="hero.native5"
+    ></app-attribute>
+    <app-attribute
+      prefix="6"
+      [value]="hero.native6"
+    ></app-attribute>
+    <div class="thick">Eigenschaften</div>
+    <app-ability-view
+      prefix="Bewegung: "
+      [ability]="mov"
+      [value]="hero.movement"
+    >
+    </app-ability-view>
+    <app-ability-view
+      prefix="Stärke: "
+      [ability]="str"
+      [value]="hero.strength"
+    >
+    </app-ability-view>
+    <app-ability-view
+      prefix="Geschick: "
+      [ability]="dex"
+      [value]="hero.dexterity"
+    >
+    </app-ability-view>
+    <app-ability-view
+      prefix="Intelligenz: "
+      [ability]="int"
+      [value]="hero.intelligence"
+    >
+    </app-ability-view>
+    <div class="thick">Ausrüstung</div>
+    <app-attribute
+      *ngIf="hero.race === 'Oger'"
+      prefix="Steine"
+      value="{{ getStones() }}"
+    ></app-attribute>
+  
+  <!-- item1 -->
+    <app-attribute-w-tooltip
+    prefix="{{ prefixOf(0) }}"
+    [value]="hero.equipment[0]"
+    [valueTooltip]="hero.equipmentInfo[0]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item2 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(1) }}"
+  [value]="hero.equipment[1]"
+  [valueTooltip]="hero.equipmentInfo[1]"
+  ></app-attribute-w-tooltip>
+  
+  
+  <!-- item3 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(2) }}"
+  [value]="hero.equipment[2]"
+  [valueTooltip]="hero.equipmentInfo[2]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item4 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(3) }}"
+  [value]="hero.equipment[3]"
+  [valueTooltip]="hero.equipmentInfo[3]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item5 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(4) }}"
+  [value]="hero.equipment[4]"
+  [valueTooltip]="hero.equipmentInfo[4]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item6 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(5) }}"
+  [value]="hero.equipment[5]"
+  [valueTooltip]="hero.equipmentInfo[5]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item7 -->
+  <app-attribute-w-tooltip
+  prefix="{{ prefixOf(6) }}"
+  [value]="hero.equipment[6]"
+  [valueTooltip]="hero.equipmentInfo[6]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item8 -->
+  <app-attribute-w-tooltip
+  *ngIf="hero && hero.equipment[7] && !isHorse(8) "
+  prefix="{{ prefixOf(7) }}"
+  [value]="hero.equipment[7]"
+  [valueTooltip]="hero.equipmentInfo[7]"
+  ></app-attribute-w-tooltip>
+  
+  <app-attribute-horse-view
+  *ngIf="hero && hero.equipment[7] && isHorse(8) "
+  prefix="{{ prefixOf(7) }}"
+  [horse]="hero.horse"
+  [horseInfo]="hero.horseInfo"
+  [item]="hero.equipment[7]"
+  [itemInfo]="hero.equipmentInfo[7]"
+  ></app-attribute-horse-view>
+  
+  <!-- item9 -->
+  <app-attribute-w-tooltip
+  *ngIf="hero && hero.equipment[8]"
+  prefix="{{ prefixOf(8) }}"
+  [value]="hero.equipment[8]"
+  [valueTooltip]="hero.equipmentInfo[8]"
+  ></app-attribute-w-tooltip>
+  
+  <!-- item10 -->
+  <app-attribute-w-tooltip
+  *ngIf="hero && hero.equipment[9]"
+  prefix="{{ prefixOf(9) }}"
+  [value]="hero.equipment[9]"
+  [valueTooltip]="hero.equipmentInfo[9]"
+  ></app-attribute-w-tooltip>
+  
+  
+    <!-- <ng-container *ngFor="let e of hero.equipment; let i = index">
+      <app-attribute-w-tooltip
+        *ngIf="!isHorse(i + 1) && hero"
+        prefix="{{ prefixOf(i) }}"
+        [value]="e"
+        [valueTooltip]="hero.equipmentInfo[i]"
+        (onChangeValue)="setEquipment($event, i)"
+      ></app-attribute-w-tooltip>
+  
+      <app-attribute-horse
+        *ngIf="isHorse(i + 1) && hero"
+        prefix="{{ prefixOf(i) }}"
+        [horse]="hero.horse"
+        [horseInfo]="hero.horseInfo"
+        [item]="e"
+        [itemInfo]="hero.equipmentInfo[i]"
+        (onChangeItem)="setEquipment($event, i)"
+        (onChangeHorse)="setHorse($event)"
+      ></app-attribute-horse>
+    </ng-container> -->
+  </div>
+  

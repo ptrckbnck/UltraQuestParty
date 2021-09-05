@@ -6,6 +6,7 @@ import { Component, Input,Output, OnInit, EventEmitter,ViewChild, ElementRef } f
   styleUrls: ['./modifiable-attribute.component.css']
 })
 export class ModifiableAttributeComponent implements OnInit {
+  @ViewChild('edit', {static: false}) inputEl?: ElementRef;
   @Output() onChangeValue: EventEmitter<String> = new EventEmitter();
   @Input() prefix!: String;
   @Input() value!: String;
@@ -21,6 +22,16 @@ export class ModifiableAttributeComponent implements OnInit {
 
   onToggle(): void {
     this.showChangeValue=!this.showChangeValue;
+    if (this.showChangeValue){
+      setTimeout(()=>{
+        if (this.inputEl) {this.inputEl.nativeElement.focus()};
+      },0); 
+    }else{
+      this.onChangeValue.emit(this.value);
+    }
+  
+
+
 
   }
   onSubmit() {

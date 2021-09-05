@@ -95,6 +95,7 @@
   background: #d3d1d1;
   margin-right: 5px;
   margin-left: 5px;
+  padding-left: 5px;
   text-align: left;
   border-radius: 5px;
 }
@@ -102,7 +103,9 @@
 body {
   font-family: "Poppins", sans-serif;
 }
-
+span.nomargin{
+  margin-left: 0px;
+}
 
 div.normal {
   font-weight: normal;
@@ -119,5 +122,61 @@ div.thick {
 div.thicker {
   font-weight: 900;
 }
+
+
+div.border {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+div.small{
+  font-size: 11px;
+}
+
+div.margin{
+  margin-left: 5px;
+}
+
+div.nomargin{
+  margin-left: 0px;
+}
+
+
+div.background-grey{
+background: grey;
+}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+span.circle {
+  background: #e3e3e3;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #353434;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+span.circle-filled {
+  background: #000000;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #6e6e6e;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+}
+

@@ -3,13 +3,16 @@
     <span class="alignleft">{{ prefix }}</span>
 
     <span>
-      <h2 id="race">{{ hero.race }} {{ hero.name }}
-        <span *ngIf="hero && hero.injured"><fa-icon [icon]="faUserInjured"></fa-icon></span>
-        <span *ngIf="hero && hero.cursed"><fa-icon [icon]="faCrow"> </fa-icon></span>
+      <h2 id="race">
+        {{ hero.race }} {{ hero.name }}
+        <span *ngIf="hero && hero.injured"
+          ><fa-icon [icon]="faUserInjured"></fa-icon
+        ></span>
+        <span *ngIf="hero && hero.cursed"
+          ><fa-icon [icon]="faCrow"> </fa-icon
+        ></span>
       </h2>
     </span>
-
-
   </div>
   <app-modifiable-attribute
     prefix="Name"
@@ -17,10 +20,11 @@
     (onChangeValue)="setName($event)"
   ></app-modifiable-attribute>
   <app-attribute-w-tooltip
-  prefix="Rasse"
-  [value] ="hero.race"
-  [valueTooltip] ="race.raceInfo"
-  *ngIf="hero && hero.race && race && race.raceInfo"> 
+    prefix="Rasse"
+    [value]="hero.race"
+    [valueTooltip]="race.raceInfo"
+    *ngIf="hero && hero.race && race && race.raceInfo"
+  >
   </app-attribute-w-tooltip>
 
   <app-modifiable-attribute-w-tooltip
@@ -50,28 +54,82 @@
     ></span>
   </div>
 
-  <app-modifiable-attribute
-    prefix="NK"
-    value="{{hero.closeCombat}}"
-    (onChangeValue)="setCloseCombat($event)"
-  ></app-modifiable-attribute>
-  <app-modifiable-attribute
-    prefix="FK"
-    value="{{hero.rangeCombat}}"
-    (onChangeValue)="setRangeCombat($event)"
-  ></app-modifiable-attribute>
-  <app-modifiable-attribute
-    prefix="RW"
-    value="{{hero.armor}}"
-    (onChangeValue)="setArmor($event)"
-  ></app-modifiable-attribute>
+  <!-- Nahkampf -->
+  <div class="border">
+    <app-modifiable-attribute
+      prefix="NK"
+      value="{{ hero.closeCombat }}"
+      (onChangeValue)="setCloseCombat($event)"
+    ></app-modifiable-attribute>
+    <div class="small margin">
+    <app-modifiable-attribute
+      prefix="NK-Bonus-Draußen"
+      value="{{ hero.closeCombatBonusOutdoor }}"
+      (onChangeValue)="setCloseCombatBonusOutdoor($event)"
+    ></app-modifiable-attribute>
+
+    <app-modifiable-attribute
+      prefix="NK-Bonus-Untote"
+      value="{{ hero.closeCombatBonusUndead }}"
+      (onChangeValue)="setCloseCombatBonusUndead($event)"
+    ></app-modifiable-attribute>
+
+    <app-modifiable-attribute
+      prefix="NK-Magie"
+      value="{{ hero.closeCombatMagic }}"
+      (onChangeValue)="setCloseCombatMagic($event)"
+    ></app-modifiable-attribute>
+  </div>
+</div>
+  <!-- Fernkampf -->
+  <div class="border"> 
+    <app-modifiable-attribute
+      prefix="FK"
+      value="{{ hero.rangeCombat }}"
+      (onChangeValue)="setRangeCombat($event)"
+    ></app-modifiable-attribute>
+    <div class="small margin">
+    <app-modifiable-attribute
+      prefix="FK-Bonus-Draußen"
+      value="{{ hero.rangeCombatBonusOutdoor }}"
+      (onChangeValue)="setRangeCombatBonusOutdoor($event)"
+    ></app-modifiable-attribute>
+
+    <app-modifiable-attribute
+      prefix="FK-Bonus-Untote"
+      value="{{ hero.rangeCombatBonusUndead  }}"
+      (onChangeValue)="setRangeCombatBonusUndead($event)"
+    ></app-modifiable-attribute>
+
+    <app-modifiable-attribute
+      prefix="FK-Magie"
+      value="{{ hero.rangeCombatMagic }}"
+      (onChangeValue)="setRangeCombatMagic($event)"
+    ></app-modifiable-attribute>
+  </div>  
+</div>
+<!-- Rüstung -->
+  <div class="border">
+    <app-modifiable-attribute
+      prefix="RW"
+      value="{{ hero.armor }}"
+      (onChangeValue)="setArmor($event)"
+    ></app-modifiable-attribute>
+
+    <div class="small margin">
+    <app-modifiable-attribute
+      prefix="RW-Magie"
+      value="{{ hero.armorMagic }}"
+      (onChangeValue)="setArmorMagic($event)"
+    ></app-modifiable-attribute>
+  </div>
   <app-modifiable-attribute-w-tooltip
     prefix="Rüstung"
     [value]="hero.armorItem"
     [valueTooltip]="hero.armorItemInfo"
     (onChangeValue)="setArmorItem($event)"
   ></app-modifiable-attribute-w-tooltip>
-
+  <div class="div"></div></div>
   <div class="thick">Fertigkeiten</div>
   <app-attribute-w-tooltip
     *ngIf="hero.profession === 'Kleriker'"
@@ -87,14 +145,14 @@
   ></app-modifiable-attribute-w-tooltip>
   <app-modifiable-attribute-w-tooltip
     prefix="2"
-    [value] ="hero.skill2"
-    [valueTooltip] ="hero.skill2Info"
+    [value]="hero.skill2"
+    [valueTooltip]="hero.skill2Info"
     (onChangeValue)="setSkill2($event)"
   ></app-modifiable-attribute-w-tooltip>
   <app-modifiable-attribute-w-tooltip
-    prefix ="3"
-    [value] ="hero.skill3"
-    [valueTooltip] ="hero.skill3Info"
+    prefix="3"
+    [value]="hero.skill3"
+    [valueTooltip]="hero.skill3Info"
     (onChangeValue)="setSkill3($event)"
   ></app-modifiable-attribute-w-tooltip>
   <app-modifiable-attribute-w-tooltip
@@ -159,101 +217,99 @@
     (onChangeValue)="setStones($event)"
   ></app-modifiable-attribute>
 
-<!-- item1 -->
+  <!-- item1 -->
   <app-modifiable-attribute-w-tooltip
-  prefix="{{ prefixOf(0) }}"
-  [value]="hero.equipment[0]"
-  [valueTooltip]="hero.equipmentInfo[0]"
-  (onChangeValue)="setEquipment($event, 0)"
-></app-modifiable-attribute-w-tooltip>
+    prefix="{{ prefixOf(0) }}"
+    [value]="hero.equipment[0]"
+    [valueTooltip]="hero.equipmentInfo[0]"
+    (onChangeValue)="setEquipment($event, 0)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item2 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(1) }}"
-[value]="hero.equipment[1]"
-[valueTooltip]="hero.equipmentInfo[1]"
-(onChangeValue)="setEquipment($event, 1)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item2 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(1) }}"
+    [value]="hero.equipment[1]"
+    [valueTooltip]="hero.equipmentInfo[1]"
+    (onChangeValue)="setEquipment($event, 1)"
+  ></app-modifiable-attribute-w-tooltip>
 
+  <!-- item3 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(2) }}"
+    [value]="hero.equipment[2]"
+    [valueTooltip]="hero.equipmentInfo[2]"
+    (onChangeValue)="setEquipment($event, 2)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item3 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(2) }}"
-[value]="hero.equipment[2]"
-[valueTooltip]="hero.equipmentInfo[2]"
-(onChangeValue)="setEquipment($event, 2)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item4 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(3) }}"
+    [value]="hero.equipment[3]"
+    [valueTooltip]="hero.equipmentInfo[3]"
+    (onChangeValue)="setEquipment($event, 3)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item4 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(3) }}"
-[value]="hero.equipment[3]"
-[valueTooltip]="hero.equipmentInfo[3]"
-(onChangeValue)="setEquipment($event, 3)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item5 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(4) }}"
+    [value]="hero.equipment[4]"
+    [valueTooltip]="hero.equipmentInfo[4]"
+    (onChangeValue)="setEquipment($event, 4)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item5 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(4) }}"
-[value]="hero.equipment[4]"
-[valueTooltip]="hero.equipmentInfo[4]"
-(onChangeValue)="setEquipment($event, 4)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item6 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(5) }}"
+    [value]="hero.equipment[5]"
+    [valueTooltip]="hero.equipmentInfo[5]"
+    (onChangeValue)="setEquipment($event, 5)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item6 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(5) }}"
-[value]="hero.equipment[5]"
-[valueTooltip]="hero.equipmentInfo[5]"
-(onChangeValue)="setEquipment($event, 5)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item7 -->
+  <app-modifiable-attribute-w-tooltip
+    prefix="{{ prefixOf(6) }}"
+    [value]="hero.equipment[6]"
+    [valueTooltip]="hero.equipmentInfo[6]"
+    (onChangeValue)="setEquipment($event, 6)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item7 -->
-<app-modifiable-attribute-w-tooltip
-prefix="{{ prefixOf(6) }}"
-[value]="hero.equipment[6]"
-[valueTooltip]="hero.equipmentInfo[6]"
-(onChangeValue)="setEquipment($event, 6)"
-></app-modifiable-attribute-w-tooltip>
+  <!-- item8 -->
+  <app-modifiable-attribute-w-tooltip
+    *ngIf="hero && hero.equipment[7] && !isHorse(8)"
+    prefix="{{ prefixOf(7) }}"
+    [value]="hero.equipment[7]"
+    [valueTooltip]="hero.equipmentInfo[7]"
+    (onChangeValue)="setEquipment($event, 7)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item8 -->
-<app-modifiable-attribute-w-tooltip
-*ngIf="hero && hero.equipment[7] && !isHorse(8) "
-prefix="{{ prefixOf(7) }}"
-[value]="hero.equipment[7]"
-[valueTooltip]="hero.equipmentInfo[7]"
-(onChangeValue)="setEquipment($event, 7)"
-></app-modifiable-attribute-w-tooltip>
+  <app-modifiable-attribute-horse
+    *ngIf="hero && hero.equipment[7] && isHorse(8)"
+    prefix="{{ prefixOf(7) }}"
+    [horse]="hero.horse"
+    [horseInfo]="hero.horseInfo"
+    [item]="hero.equipment[7]"
+    [itemInfo]="hero.equipmentInfo[7]"
+    (onChangeItem)="setEquipment($event, 7)"
+    (onChangeHorse)="setHorse($event)"
+  ></app-modifiable-attribute-horse>
 
-<app-modifiable-attribute-horse
-*ngIf="hero && hero.equipment[7] && isHorse(8) "
-prefix="{{ prefixOf(7) }}"
-[horse]="hero.horse"
-[horseInfo]="hero.horseInfo"
-[item]="hero.equipment[7]"
-[itemInfo]="hero.equipmentInfo[7]"
-(onChangeItem)="setEquipment($event, 7)"
-(onChangeHorse)="setHorse($event)"
-></app-modifiable-attribute-horse>
+  <!-- item9 -->
+  <app-modifiable-attribute-w-tooltip
+    *ngIf="hero && hero.equipment[8]"
+    prefix="{{ prefixOf(8) }}"
+    [value]="hero.equipment[8]"
+    [valueTooltip]="hero.equipmentInfo[8]"
+    (onChangeValue)="setEquipment($event, 8)"
+  ></app-modifiable-attribute-w-tooltip>
 
-<!-- item9 -->
-<app-modifiable-attribute-w-tooltip
-*ngIf="hero && hero.equipment[8]"
-prefix="{{ prefixOf(8) }}"
-[value]="hero.equipment[8]"
-[valueTooltip]="hero.equipmentInfo[8]"
-(onChangeValue)="setEquipment($event, 8)"
-></app-modifiable-attribute-w-tooltip>
-
-<!-- item10 -->
-<app-modifiable-attribute-w-tooltip
-*ngIf="hero && hero.equipment[9]"
-prefix="{{ prefixOf(9) }}"
-[value]="hero.equipment[9]"
-[valueTooltip]="hero.equipmentInfo[9]"
-(onChangeValue)="setEquipment($event, 9)"
-></app-modifiable-attribute-w-tooltip>
-
+  <!-- item10 -->
+  <app-modifiable-attribute-w-tooltip
+    *ngIf="hero && hero.equipment[9]"
+    prefix="{{ prefixOf(9) }}"
+    [value]="hero.equipment[9]"
+    [valueTooltip]="hero.equipmentInfo[9]"
+    (onChangeValue)="setEquipment($event, 9)"
+  ></app-modifiable-attribute-w-tooltip>
 
   <!-- <ng-container *ngFor="let e of hero.equipment; let i = index">
     <app-modifiable-attribute-w-tooltip

@@ -25,10 +25,16 @@ import { MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import {MatRadioModule} from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PartyViewComponent } from './components/hero/party-view/party-view.component';
+import { HeroCardViewComponent } from './components/hero/hero-card-view/hero-card-view.component';
+import { AttributeComponent } from './components/hero/attribute/attribute.component';
+import { AttributeHorseViewComponent } from './components/hero/attribute-horse-view/attribute-horse-view.component';
+import { AbilityViewComponent } from './components/hero/ability-view/ability-view.component';
 
 const appRoutes: Routes = [
-  {path: 'party', component: PartyComponent},
+  {path: 'party', component: AboutComponent},
   {path: 'party/:name', component: PartyComponent},
+  {path: 'party/:name/view', component: PartyViewComponent},
   {path: 'about', component: AboutComponent},
   {path: 'hero', component: HeroCardComponent},
   {path: 'test', component: TestComponent},
@@ -52,7 +58,12 @@ const appRoutes: Routes = [
     PartyComponent,
     ModifiableAttributeWTooltipComponent,
     TestComponent,
-    AttributeWTooltipComponent
+    AttributeWTooltipComponent,
+    PartyViewComponent,
+    HeroCardViewComponent,
+    AttributeComponent,
+    AttributeHorseViewComponent,
+    AbilityViewComponent
   ],
   imports: [
     BrowserModule,

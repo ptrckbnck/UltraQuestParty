@@ -113,16 +113,61 @@ export class HeroCardComponent implements OnInit {
     }
   }
 
+  setCloseCombatMagic(value: String) {
+    if (this.hero.closeCombatMagic != Number(value)) {
+      this.hero.closeCombatMagic = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
+
+  setCloseCombatBonusOutdoor(value: String) {
+    if (this.hero.closeCombatBonusOutdoor != Number(value)) {
+      this.hero.closeCombatBonusOutdoor = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
+  
+  setCloseCombatBonusUndead(value: String) {
+    if (this.hero.closeCombatBonusUndead != Number(value)) {
+      this.hero.closeCombatBonusUndead = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
   setRangeCombat(value: String) {
     if (this.hero.rangeCombat != Number(value)) {
       this.hero.rangeCombat = Number(value);
       this.onChangeHero.emit(this.hero);
     }
   }
+  setRangeCombatMagic(value: String) {
+    if (this.hero.rangeCombatMagic != Number(value)) {
+      this.hero.rangeCombatMagic = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
 
+  setRangeCombatBonusOutdoor(value: String) {
+    if (this.hero.rangeCombatBonusOutdoor != Number(value)) {
+      this.hero.rangeCombatBonusOutdoor = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
+  
+  setRangeCombatBonusUndead(value: String) {
+    if (this.hero.rangeCombatBonusUndead != Number(value)) {
+      this.hero.rangeCombatBonusUndead = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
   setArmor(value: String) {
     if (this.hero.armor != Number(value)) {
       this.hero.armor = Number(value);
+      this.onChangeHero.emit(this.hero);
+    }
+  }
+  setArmorMagic(value: String) {
+    if (this.hero.armorMagic != Number(value)) {
+      this.hero.armorMagic = Number(value);
       this.onChangeHero.emit(this.hero);
     }
   }

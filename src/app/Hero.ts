@@ -1,13 +1,21 @@
 export interface Hero {
     id? : number;
+    dead : boolean;
     race: String;
     raceInfo? : String;
     name: String;
     profession: String;
     professionInfo: String; 
     closeCombat: number;
+    closeCombatMagic: number;
+    closeCombatBonusOutdoor: number;
+    closeCombatBonusUndead: number;
     rangeCombat: number;
+    rangeCombatMagic: number;
+    rangeCombatBonusOutdoor: number;
+    rangeCombatBonusUndead: number;
     armor: number;
+    armorMagic: number;
     skill1 : String;  
     skill1Info : String;
     skill2 : String;

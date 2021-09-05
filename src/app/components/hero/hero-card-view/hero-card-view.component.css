@@ -1,0 +1,11 @@
+#race {text-align:center}.example-h2 {
+    margin: 10px;
+  }
+  
+  ::ng-deep  .mat-checkbox .mat-checkbox-frame {
+    background-color: #dddddd;
+    border: 1px;
+}
+span{
+    margin-right: 2px;
+}

@@ -19,7 +19,6 @@ export class PartyComponent implements OnInit {
     player: '',
     name: '',
     heroes: [],
-    heroesDead: [],
     quest1: '',
     quest2: '',
     quest3: '',
@@ -28,11 +27,22 @@ export class PartyComponent implements OnInit {
     location: '',
   };
   heroes: Hero[] = [];
+  hero_ids: number[] = [];
   heroes_subscription?: Subscription;
   party_subscription?: Subscription;
   nk: number = 0;
+  nku: number = 0;
+  nko: number = 0;
+  nkm: number = 0;
   fk: number = 0;
+  fku: number = 0;
+  fko: number = 0;
+  fkm: number = 0;
   nfk: number = 0;
+  nfku: number = 0;
+  nfko: number = 0;
+  nfkm: number = 0;
+  nfkou: number = 0;
   showNewHeroValue: boolean = false;
   raceValue: String = '';
   faSkull = faSkull;
@@ -74,55 +84,102 @@ export class PartyComponent implements OnInit {
         if (!parties[0].heroes || !parties[0].heroes.length) {
           return;
         }
-        var h = parties[0].heroes;
-        this.heroes_subscription = this.heroService
-          .getHeroes(h)
-          .subscribe((heroes) => {
-            this.heroes = heroes.sort((a,b )=>h.indexOf(a.id!)-h.indexOf(b.id!))
-            this.nk = heroes.reduce(
-              (sum, current) => sum + current.closeCombat,
-              0
-            );
-            this.fk = heroes.reduce(
-              (sum, current) => sum + current.rangeCombat,
-              0
-            );
-            this.nfk = heroes.reduce(
-              (sum, current) =>
-                sum + Math.max(current.rangeCombat, current.closeCombat),
-              0
-            );
-          });
+        this.hero_ids  = parties[0].heroes;
+        this.updateHeroes()
+
       });
   }
 
-  setHero(hero: Hero, i : number) {
-   //this.heroService.updateHero(hero).subscribe(() => this.ngOnInit());
-   this.heroService.updateHero(hero).subscribe();
-   console.log(hero);
-   console.log(this.heroes[i]);
+  livingHeroes() {
+    return this.heroes.filter((h)=>!h.dead)
   }
 
-  isDead(hero: Hero){
-    if (!hero.id){return}
-    const set = new Set(this.party.heroesDead)
-    if (set.has(hero.id)){
-      return true;
-    }return false;
+  updateHeroes() {
+    this.heroes_subscription = this.heroService
+    .getHeroes(this.hero_ids)
+    .subscribe((heroes) => {
+      this.heroes = heroes.sort((a,b )=>this.hero_ids.indexOf(a.id!)-this.hero_ids.indexOf(b.id!))
+      var lHeroes =  this.livingHeroes()
+      this.nk =  lHeroes.reduce(
+        (sum, current) => sum + current.closeCombat,
+        0
+      );
+      this.nku =  lHeroes.reduce(
+        (sum, current) => sum + current.closeCombatBonusUndead,
+        0
+      );
+      this.nko =  lHeroes.reduce(
+        (sum, current) => sum + current.closeCombatBonusOutdoor,
+        0
+      );
+      this.nkm =  lHeroes.reduce(
+        (sum, current) => sum + current.closeCombatMagic,
+        0
+      );
+      this.fk =  lHeroes.reduce(
+        (sum, current) => sum + current.rangeCombat,
+        0
+      );
+      this.fku =  lHeroes.reduce(
+        (sum, current) => sum + current.rangeCombatBonusUndead,
+        0
+      );
+      this.fko =  lHeroes.reduce(
+        (sum, current) => sum + current.rangeCombatBonusOutdoor,
+        0
+      );
+      this.fkm =  lHeroes.reduce(
+        (sum, current) => sum + current.rangeCombatMagic,
+        0
+      );
+      
+      this.nfk = lHeroes.reduce(
+        (sum, current) =>
+          sum + Math.max(current.rangeCombat, current.closeCombat),
+        0
+      );
+
+      this.nfkm = lHeroes.reduce(
+        (sum, current) =>
+          sum + Math.max(current.rangeCombatMagic, current.closeCombatMagic),
+        0
+      );
+
+      this.nfku = lHeroes.reduce(
+        (sum, current) =>
+          sum + Math.max(current.rangeCombat+current.rangeCombatBonusUndead,
+            current.closeCombat+current.closeCombatBonusUndead),
+        0
+      );
+      this.nfko = lHeroes.reduce(
+        (sum, current) =>
+          sum + Math.max(current.rangeCombat+current.rangeCombatBonusOutdoor,
+            current.closeCombat+ current.closeCombatBonusOutdoor),
+        0
+      );
+
+      this.nfkou = lHeroes.reduce(
+        (sum, current) =>
+          sum + Math.max(current.rangeCombat+current.rangeCombatBonusUndead+current.rangeCombatBonusOutdoor,
+            current.closeCombat+current.closeCombatBonusUndead+current.closeCombatBonusOutdoor),
+        0
+      );
+
+    });
   }
+
+
+  setHero(hero: Hero) {
+   this.heroService.updateHero(hero).subscribe(() => this.updateHeroes() );
+   
+  }
+
+
 
   toggleDead(hero: Hero){
     if (!hero.id){return}
-    const set = new Set(this.party.heroesDead)
-    if (set.has(hero.id)){
-      set.delete(hero.id)
-    } else {
-      set.add(hero.id);
-    }
-    this.party.heroesDead= Array.from(set);
-    this.partyService
-    .updateParty(this.party)
-    .subscribe(() => this.ngOnInit());
+    hero.dead = !hero.dead
+    this.setHero(hero)
   }
 
   setPlayer(value: String): void {

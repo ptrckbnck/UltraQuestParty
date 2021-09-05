@@ -30,7 +30,7 @@
     <div *ngFor="let hero of heroes; let i = index" id=textboxsmall (click)="up(i)" (dblclick)="toggleDead(hero)">
       <span class=alignleft>{{i+1}}:</span> 
       <span class=aligncenter> {{hero.race}} {{hero.name}} </span>
-      <span class=alignright *ngIf="isDead(hero)"><fa-icon [icon]="faSkull"> </fa-icon></span> 
+      <span class=alignright *ngIf="hero.dead"><fa-icon [icon]="faSkull"> </fa-icon></span> 
     </div>
 
     <div class="thick">Questen</div> 
@@ -42,13 +42,53 @@
       <span class=alignleft>NK:</span> 
       <span>{{nk}} </span>
     </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK Magie:</span> 
+      <span>{{nkm}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK Untod Bonus:</span> 
+      <span>{{nku}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK Draußen:</span> 
+      <span>{{nko}} </span>
+    </div>
     <div id=textboxsmall>
       <span class=alignleft>FK:</span> 
       <span>{{fk}} </span>
     </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>FK Magie:</span> 
+      <span>{{fkm}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>FK Untod Bonus:</span> 
+      <span>{{fku}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>FK Draußen:</span> 
+      <span>{{fko}} </span>
+    </div>
     <div id=textboxsmall>
       <span class=alignleft>NK+FK:</span> 
       <span>{{nfk}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK+FK Draußen:</span> 
+      <span>{{nfko}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK+FK Untod:</span> 
+      <span>{{nfku}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK+FK Beides:</span> 
+      <span>{{nfkou}} </span>
+    </div>
+    <div id=textboxsmall class="small margin">
+      <span class=alignleft>NK+FK Magic:</span> 
+      <span>{{nfkm}} </span>
     </div>
     <div class="thick">Sonstiges</div>
     <app-modifiable-attribute prefix="Ruhm!" value="{{party.fame}}" (onChangeValue)="setFame($event)"></app-modifiable-attribute>
@@ -58,9 +98,9 @@
 
 <ng-container *ngFor="let hero of heroes; let i = index">
 <app-hero-card
-  *ngIf="!isDead(hero)"
+  *ngIf="!hero.dead"
   [hero]="this.heroes[i]"
-  (onChangeHero)="setHero($event, i)"
+  (onChangeHero)="setHero($event)"
   prefix = {{i+1}}
 >
   ></app-hero-card

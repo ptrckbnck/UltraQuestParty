@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Gruppenbogen</h2>
+  <app-attribute
+    prefix="Spieler"
+    value="{{ party.player }}"
+  ></app-attribute>
+  <div id="textboxsmall">
+    <span class="alignleft">Gruppe:</span>
+    <span>{{ party.name }} </span>
+  </div>
+
+  <div class="thick">
+  Abenteurer
+</div>
+
+<div *ngFor="let hero of heroes; let i = index" id="textboxsmall">
+  <span class="alignleft">{{ i + 1 }}:</span>
+  <span class="aligncenter"> {{ hero.race }} {{ hero.name }} </span>
+  <span class="alignright" *ngIf="hero.dead"
+    ><fa-icon [icon]="faSkull"> </fa-icon
+  ></span>
+</div>
+
+<div class="thick">Questen</div>
+<app-attribute
+  prefix="1"
+  value="{{ party.quest1 }}"
+></app-attribute>
+<app-attribute
+  prefix="2"
+  value="{{ party.quest2 }}"
+></app-attribute>
+<app-attribute
+  prefix="3"
+  value="{{ party.quest3 }}"
+></app-attribute>
+<div class="thick">Kampfwerte</div>
+<div id="textboxsmall">
+  <span class="alignleft">NK:</span>
+  <span>{{ nk }} </span>
+</div>
+<div id="textboxsmall">
+  <span class="alignleft">FK:</span>
+  <span>{{ fk }} </span>
+</div>
+<div id="textboxsmall">
+  <span class="alignleft">NK+FK:</span>
+  <span>{{ nfk }} </span>
+</div>
+<div class="thick">Sonstiges</div>
+<app-attribute
+  prefix="Ruhm!"
+  value="{{ party.fame }}"
+></app-attribute>
+<app-attribute
+  prefix="Ehre!"
+  value="{{ party.honor }}"
+></app-attribute>
+<app-attribute
+  prefix="Standort"
+  value="{{ party.location }}"
+></app-attribute>
+</div>
+
+
+<ng-container *ngFor="let hero of heroes; let i = index">
+  <app-hero-card-view
+    *ngIf="!hero.dead"
+    [hero]="this.heroes[i]"
+    prefix="{{ i + 1 }}"
+  >
+    ></app-hero-card-view
+  >
+</ng-container>

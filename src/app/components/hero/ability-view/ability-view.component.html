@@ -1,0 +1,7 @@
+<div id="textbox" *ngIf="ability">
+    <span class="alignleft">{{ prefix }}</span>
+    <ng-container *ngFor="let cost of ability.cost; let i = index">
+      <span *ngIf="i < value || i < ability.min" class="circle-filled">&#8203;</span>
+      <span *ngIf="(i < value || i < ability.min) === false" class="circle">{{ cost }}</span>
+    </ng-container>
+</div>

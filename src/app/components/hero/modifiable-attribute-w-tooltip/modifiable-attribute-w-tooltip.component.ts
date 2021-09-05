@@ -1,3 +1,5 @@
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { Component, Input,Output, OnInit, EventEmitter } from '@angular/core';
 import { ValueInfoPair } from 'src/app/ValueInfoPair';
 
@@ -7,6 +9,7 @@ import { ValueInfoPair } from 'src/app/ValueInfoPair';
   styleUrls: ['./modifiable-attribute-w-tooltip.component.css']
 })
 export class ModifiableAttributeWTooltipComponent implements OnInit {
+  @ViewChild('edit', {static: false}) inputEl?: ElementRef;
   @Output() onChangeValue: EventEmitter<ValueInfoPair> = new EventEmitter();
   @Input() prefix!: String;
   @Input() value!: String;
@@ -21,13 +24,18 @@ export class ModifiableAttributeWTooltipComponent implements OnInit {
     
   }
 
+
   onToggle(): void {
+    this.showChangeValue=!this.showChangeValue;
     if (this.showChangeValue){
+      setTimeout(()=>{
+        if (this.inputEl) {this.inputEl.nativeElement.focus()};
+      },0); 
+    }else{
       this.onChangeValue.emit({value:this.value, info: this.valueTooltip});
     }
-    this.showChangeValue=!this.showChangeValue;
   }
-
+  
 
   onSubmit() {
     this.showChangeValue = false;
