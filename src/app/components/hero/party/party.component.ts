@@ -8,6 +8,7 @@ import { HeroService } from 'src/app/services/hero.service';
 import { PartyService } from 'src/app/services/party.service';
 import { RaceService } from 'src/app/services/race.service';
 import { faSkull } from '@fortawesome/free-solid-svg-icons';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-party',
@@ -30,6 +31,7 @@ export class PartyComponent implements OnInit {
   hero_ids: number[] = [];
   heroes_subscription?: Subscription;
   party_subscription?: Subscription;
+  allRaces_subscription?: Subscription;
   nk: number = 0;
   nku: number = 0;
   nko: number = 0;
@@ -46,6 +48,7 @@ export class PartyComponent implements OnInit {
   showNewHeroValue: boolean = false;
   raceValue: String = '';
   faSkull = faSkull;
+  allRaces: String[] = [];
 
   constructor(
     private raceService: RaceService,
@@ -88,7 +91,31 @@ export class PartyComponent implements OnInit {
         this.updateHeroes()
 
       });
+      this.allRaces_subscription = this.raceService.getRaces().subscribe((races)=>{
+        this.allRaces = races.map((r)=>r.race).sort();       
+      })
   }
+
+  drop(event: CdkDragDrop<Hero[]>) {
+    moveItemInArray(this.party.heroes, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.heroes, event.previousIndex, event.currentIndex);
+    this.partyService
+    .updateParty(this.party)
+    .subscribe(() => this.ngOnInit()); 
+
+  }
+
+  up(pos : number){
+    console.log(pos)
+    if ( pos !== 0){
+      this.party.heroes = this.arraymoveup(this.party.heroes, pos)
+      this.heroes = this.arraymoveup(this.heroes, pos)
+      this.partyService
+      .updateParty(this.party)
+      .subscribe(() => this.ngOnInit()); 
+    }
+  }
+
 
   livingHeroes() {
     return this.heroes.filter((h)=>!h.dead)
@@ -270,16 +297,6 @@ export class PartyComponent implements OnInit {
     });
   }
 
-  up(pos : number){
-    console.log(pos)
-    if ( pos !== 0){
-      this.party.heroes = this.arraymoveup(this.party.heroes, pos)
-      this.heroes = this.arraymoveup(this.heroes, pos)
-      this.partyService
-      .updateParty(this.party)
-      .subscribe(() => this.ngOnInit()); 
-    }
-  }
 
   arraymoveup(arr : any[], fromIndex: number) {
     return arr.slice(0, fromIndex-1).concat(arr[fromIndex],arr[fromIndex-1],arr.slice(fromIndex+1))
