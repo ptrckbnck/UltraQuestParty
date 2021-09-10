@@ -12,20 +12,6 @@
 
   <div class="thick" (dblclick)="onToggleParty()">Abenteurer</div>
 
-  <form *ngIf="showNewHeroValue" (ngSubmit)="onSubmitNewHero()">
-    <div>
-      <div>Neuen Abenteurer anlegen:</div>
-      <mat-form-field appearance="fill">
-        <mat-label>Wähle die Rasse</mat-label>
-        <mat-select [(ngModel)]="raceValue" name="Rasse">
-          <mat-option *ngFor="let race of allRaces" [value]="race">
-            {{ race }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <input type="submit" value="speichern" class="btn btn-block" />
-    </div>
-  </form>
 
   <div cdkDropList  (cdkDropListDropped)="drop($event)">
   <div
@@ -42,6 +28,20 @@
     ></span>
   </div>
 </div>
+<div *ngIf="heroes.length<7" (dblclick)="onToggleParty()">Neuen Abenteurer anlegen</div>
+<form *ngIf="showNewHeroValue" (ngSubmit)="onSubmitNewHero()">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Wähle die Rasse</mat-label>
+      <mat-select [(ngModel)]="raceValue" name="Rasse">
+        <mat-option *ngFor="let race of allRaces" [value]="race">
+          {{ race }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="submit" value="speichern" class="btn btn-block" />
+  </div>
+</form>
 
 
   <div class="thick">Questen</div>
