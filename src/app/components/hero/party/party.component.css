@@ -8,7 +8,8 @@ h2 {
 .mat-sidenav{
     position:fixed;
     top: 10%;
-    border: 0px
+    border: 0px;
+    background-color: whitesmoke;
 }
 .example-list {
     width: 500px;
