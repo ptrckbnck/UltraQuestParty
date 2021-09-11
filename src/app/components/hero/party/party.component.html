@@ -2,7 +2,7 @@
   <mat-sidenav  #sidenav  mode="side" opened>
   <div (click)="scroll(gruppenbogen)">Gruppenbogen</div >
   <ng-container *ngFor="let hero of heroes; let i = index" >
-    <div (click)="scrollTo('hero_' + i)">{{hero.name}}</div>
+    <div (click)="scrollTo('hero_' + i)" *ngIf="!hero.dead">{{hero.name}}</div>
   </ng-container>
     
   </mat-sidenav>
