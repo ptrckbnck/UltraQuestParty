@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Hero } from 'src/app/Hero';
 import { Party } from 'src/app/Party';
 import { Race } from 'src/app/Race';
@@ -49,13 +49,18 @@ export class PartyComponent implements OnInit {
   raceValue: String = '';
   faSkull = faSkull;
   allRaces: String[] = [];
+  inViewGruppenbogen : boolean = false;
+  
+ 
 
   constructor(
     private raceService: RaceService,
     private heroService: HeroService,
     private partyService: PartyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
+
     this.route.params.subscribe((params) => {
       if (params['name']) {
         this.party.name = String(params['name']);
@@ -72,6 +77,7 @@ export class PartyComponent implements OnInit {
       }
     });
   }
+
 
   ngOnInit(): void {
     if (!this.party.name) {
@@ -94,6 +100,7 @@ export class PartyComponent implements OnInit {
       this.allRaces_subscription = this.raceService.getRaces().subscribe((races)=>{
         this.allRaces = races.map((r)=>r.race).sort();       
       })
+     
   }
 
   drop(event: CdkDragDrop<Hero[]>) {
@@ -105,17 +112,29 @@ export class PartyComponent implements OnInit {
 
   }
 
-  up(pos : number){
-    console.log(pos)
-    if ( pos !== 0){
-      this.party.heroes = this.arraymoveup(this.party.heroes, pos)
-      this.heroes = this.arraymoveup(this.heroes, pos)
-      this.partyService
-      .updateParty(this.party)
-      .subscribe(() => this.ngOnInit()); 
-    }
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
   }
 
+  scrollTo(el: string){
+    const itemToScrollTo = document.getElementById(el);
+    if (itemToScrollTo) {
+      itemToScrollTo.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
+  }
+
+  isElementInViewport (element: string) {
+    const item = document.getElementById(element);
+    if (item) {
+    var rect = item.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+    );}
+    return false;
+}
 
   livingHeroes() {
     return this.heroes.filter((h)=>!h.dead)

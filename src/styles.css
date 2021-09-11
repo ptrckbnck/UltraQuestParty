@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: whitesmoke;
 }
 
 
@@ -143,8 +144,8 @@ div.nomargin{
 
 
 div.background-grey{
-background: grey;
-}
+  background: rgb(136, 134, 134);
+  }
 
 
 html, body { height: 100%; }

@@ -1,5 +1,16 @@
-<div class="container">
-  <h2>Gruppenbogen</h2>
+<mat-sidenav-container>
+  <mat-sidenav  #sidenav  mode="side" opened>
+  <div (click)="scroll(gruppenbogen)">Gruppenbogen</div >
+  <ng-container *ngFor="let hero of heroes; let i = index" >
+    <div (click)="scrollTo('hero_' + i)">{{hero.name}}</div>
+  </ng-container>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+<div class="container" #gruppenbogen >
+  <h2 >Gruppenbogen</h2>
   <app-modifiable-attribute
     prefix="Spieler"
     value="{{ party.player }}"
@@ -13,7 +24,7 @@
   <div class="thick" (dblclick)="onToggleParty()">Abenteurer</div>
 
 
-  <div cdkDropList  (cdkDropListDropped)="drop($event)">
+  <div cdkDropList  (cdkDropListDropped)="drop($event)" >
   <div
     *ngFor="let hero of heroes; let i = index"
     id="textboxsmall"
@@ -136,13 +147,17 @@
     (onChangeValue)="setLocation($event)"
   ></app-modifiable-attribute>
 </div>
-<ng-container *ngFor="let hero of heroes; let i = index">
+<ng-container *ngFor="let hero of heroes; let i = index" >
   <app-hero-card
     *ngIf="!hero.dead"
     [hero]="this.heroes[i]"
     (onChangeHero)="setHero($event)"
     prefix="{{ i + 1 }}"
+    id="hero_{{i}}"
   >
     ></app-hero-card
   >
 </ng-container>
+
+</mat-sidenav-content>
+</mat-sidenav-container>

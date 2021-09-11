@@ -37,12 +37,12 @@
       "name": "Test",
       "heroes": [
         7,
+        12,
         8,
         9,
         11,
         10,
-        15,
-        12
+        15
       ],
       "quest1": "",
       "quest2": "",
@@ -51,6 +51,18 @@
       "honor": "",
       "location": "",
       "id": 3
+    },
+    {
+      "player": "",
+      "name": "Test'",
+      "heroes": [],
+      "quest1": "",
+      "quest2": "",
+      "quest3": "",
+      "fame": "",
+      "honor": "",
+      "location": "",
+      "id": 4
     }
   ],
   "hero": [

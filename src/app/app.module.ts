@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatSelectModule} from '@angular/material/select'; 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -32,6 +33,7 @@ import { HeroCardViewComponent } from './components/hero/hero-card-view/hero-car
 import { AttributeComponent } from './components/hero/attribute/attribute.component';
 import { AttributeHorseViewComponent } from './components/hero/attribute-horse-view/attribute-horse-view.component';
 import { AbilityViewComponent } from './components/hero/ability-view/ability-view.component';
+import { NguiInviewModule, NguiListModule, NguiUtilsModule } from '@ngui/common';
 
 const appRoutes: Routes = [
   {path: 'party', component: AboutComponent},
@@ -72,13 +74,17 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    RouterModule.forRoot(appRoutes, {enableTracing: true, anchorScrolling: 'enabled'}),
     MatCardModule,
     MatCheckboxModule,
     MatRadioModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    DragDropModule
+    DragDropModule,
+    MatSidenavModule,
+    NguiListModule,
+    NguiInviewModule,
+    NguiUtilsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

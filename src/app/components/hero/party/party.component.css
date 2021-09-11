@@ -1,14 +1,21 @@
 h2 {
     text-align:center;
 }
+.mat-sidenav-container {
+    background-color: whitesmoke;
+}
 
+.mat-sidenav{
+    position:fixed;
+    top: 10%;
+    border: 0px
+}
 .example-list {
     width: 500px;
     max-width: 100%;
     border: solid 1px #ccc;
     min-height: 60px;
     display: block;
-    background: white;
     border-radius: 4px;
     overflow: hidden;
   }
@@ -19,7 +26,6 @@ h2 {
     flex-direction: row;
     box-sizing: border-box;
     cursor: move;
-    background: white;
     font-size: 14px;
  
   }
@@ -47,3 +53,7 @@ h2 {
   .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+  .active-link {
+    background-color: green;
+}
+  
